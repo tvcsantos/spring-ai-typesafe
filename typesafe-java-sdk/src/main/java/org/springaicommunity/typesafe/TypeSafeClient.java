@@ -34,6 +34,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -238,7 +239,7 @@ public class TypeSafeClient {
 	 * @return one result per request, in the order submitted
 	 * @see #systemOneAll(List, JevBatchOptions)
 	 */
-	public List<JevBatchResult<SystemOneResponse>> systemOneAll(List<SystemOneRequest> requests) {
+	public @NonNull List<@NonNull JevBatchResult<@NonNull SystemOneResponse>> systemOneAll(List<SystemOneRequest> requests) {
 		return systemOneAll(requests, JevBatchOptions.defaults());
 	}
 
@@ -263,8 +264,8 @@ public class TypeSafeClient {
 	 * @param options how wide to run, and on which executor
 	 * @return one result per request, in the order submitted
 	 */
-	public List<JevBatchResult<SystemOneResponse>> systemOneAll(List<SystemOneRequest> requests,
-			JevBatchOptions options) {
+	public @NonNull List<@NonNull JevBatchResult<@NonNull SystemOneResponse>> systemOneAll(
+			List<SystemOneRequest> requests, JevBatchOptions options) {
 		Assert.notNull(requests, "requests must not be null");
 		Assert.noNullElements(requests.toArray(), "requests must not contain a null request");
 		Assert.notNull(options, "options must not be null");
@@ -297,8 +298,8 @@ public class TypeSafeClient {
 		}
 	}
 
-	private JevBatchResult<SystemOneResponse> runOne(int index, SystemOneRequest request, JevBatchOptions options,
-			Semaphore permits, AtomicBoolean aborted) {
+	private JevBatchResult<@NonNull SystemOneResponse> runOne(int index, SystemOneRequest request,
+			JevBatchOptions options, Semaphore permits, AtomicBoolean aborted) {
 		if (options.failFast() && aborted.get()) {
 			return new JevBatchResult<>(index, null,
 					new TypeSafeException("Batch aborted before this request ran because failFast is set"));
@@ -342,7 +343,7 @@ public class TypeSafeClient {
 	 * Lists the models available to the account.
 	 * @return the models, never {@code null}
 	 */
-	public List<ModelMetadata> listModels() {
+	public @NonNull List<@NonNull ModelMetadata> listModels() {
 		return execute(modelsEndpoint, () -> {
 			ResponseEntity<ListModelsResponse> entity = this.typeSafeApi.listModels();
 			ListModelsResponse body = entity.getBody();

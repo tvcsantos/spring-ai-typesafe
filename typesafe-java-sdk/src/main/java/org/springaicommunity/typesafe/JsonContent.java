@@ -25,6 +25,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -77,7 +78,7 @@ public record JsonContent(@JsonValue @Nullable Object value) {
 	 * @return the wrapped value, never {@code null}
 	 */
 	@JsonCreator
-	public static JsonContent of(@Nullable Object value) {
+	public static @NonNull JsonContent of(@Nullable Object value) {
 		if (value instanceof JsonContent content) {
 			return content;
 		}
@@ -193,7 +194,7 @@ public record JsonContent(@JsonValue @Nullable Object value) {
 	 * and must never throw.
 	 * @return a display string, never {@code null}
 	 */
-	public String toDisplayString() {
+	public @NonNull String toDisplayString() {
 		if (this.value == null) {
 			return "";
 		}

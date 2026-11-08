@@ -46,9 +46,10 @@ The three primitives — `Noul`, `Choice` and `Score` — are described in
 | Module | What it is |
 | ------ | ---------- |
 | `typesafe-java-sdk` | The client: `TypeSafeClient`, the question/answer model, retries, batches, typed exceptions. No Spring AI dependency. |
+| `typesafe-kotlin-sdk` | Kotlin extensions over the Java SDK: type-safe DSLs for the client, the API and the question model |
 | `typesafe-spring-ai` | `JevJudge`, the advisors, and the RAG and tool-search integrations, on Spring AI's own SPIs |
 | `spring-ai-starter-typesafe` | `spring.ai.typesafe.*` properties and an auto-configured `TypeSafeClient` bean |
-| `typesafe-bom` | Bill of materials for the three above |
+| `typesafe-bom` | Bill of materials for the libraries above |
 | `examples` | Eight runnable demos |
 
 ## Quick start

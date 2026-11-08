@@ -28,6 +28,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 import org.springaicommunity.typesafe.exception.TypeSafeAnswerTypeException;
 import org.springaicommunity.typesafe.exception.TypeSafeMissingAnswerException;
@@ -89,7 +90,7 @@ public record SystemOneResponse(//
 	 * @return the answer, never {@code null}
 	 * @throws TypeSafeMissingAnswerException when no answer carries that name
 	 */
-	public Answer answer(String name) {
+	public @NonNull Answer answer(String name) {
 		Assert.hasText(name, "name must not be empty");
 		Answer answer = this.answers.get(name);
 		if (answer == null) {

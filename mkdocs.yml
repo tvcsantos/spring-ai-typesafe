@@ -47,6 +47,7 @@ nav:
     - Batches: client/Batches.md
     - Errors and Retries: client/ErrorsAndRetries.md
     - Spring Boot Starter: client/SpringBootStarter.md
+    - Kotlin DSL: client/KotlinDsl.md
     - Using Laya: client/Laya.md
     - Using Ollama: client/Ollama.md
   - Model-as-a-Judge:
